@@ -1,6 +1,6 @@
 {
-  "name": "Template",
-  "short_name": "Template",
+  "name": "Base_Temp",
+  "short_name": "Base_Temp",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",
