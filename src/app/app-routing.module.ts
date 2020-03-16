@@ -2,7 +2,12 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: 'swNotification',
+    loadChildren: () => import('./modules/serviceWorker/sw.module').then(mod => mod.SwModule)
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

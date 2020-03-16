@@ -7,12 +7,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppMaterialModule } from './app-material.module';
 import { PwaModule } from './pwa/pwa.module';
 import { PwaService } from './services/pwa/pwa.service';
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS, MomentDateAdapter, MAT_MOMENT_DATE_FORMATS } from '@angular/material-moment-adapter';
 import { MAT_DATE_LOCALE, MAT_DATE_FORMATS, DateAdapter } from '@angular/material/core';
+import { SwModule } from './modules/serviceWorker/sw.module';
 
 const initializer = (pwaService: PwaService) => () => pwaService.initPwaPrompt();
 
@@ -24,9 +26,11 @@ const initializer = (pwaService: PwaService) => () => pwaService.initPwaPrompt()
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production, registrationStrategy: 'registerWhenStable' }),
+    HttpClientModule,
     AppMaterialModule,
     PwaModule,
+    SwModule,
   ],
   providers: [
     { provide: APP_INITIALIZER, useFactory: initializer, deps: [PwaService], multi: true },
@@ -37,4 +41,8 @@ const initializer = (pwaService: PwaService) => () => pwaService.initPwaPrompt()
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(
+  ) {
+  }
+}

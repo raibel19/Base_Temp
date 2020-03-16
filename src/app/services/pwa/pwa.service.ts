@@ -16,7 +16,8 @@ export class PwaService {
     private plataform: Platform
   ) { }
 
-  public initPwaPrompt() {
+  public initPwaPrompt(): void {
+    debugger
     if (this.plataform.ANDROID) {
       window.addEventListener('beforeinstallprompt', (event: any) => {
         event.preventDefault();
@@ -31,7 +32,7 @@ export class PwaService {
       }
     }
   }
-  private openPromptComponent(mobileType: 'ios' | 'android') {
+  private openPromptComponent(mobileType: 'ios' | 'android'): void {
     timer(3000)
       .pipe(take(1))
       .subscribe(() => this.bottomSheet.open(PromptComponent, { data: { mobileType, promptEvent: this.promptEvent } }));

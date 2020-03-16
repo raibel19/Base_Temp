@@ -1,0 +1,65 @@
+<!-- <button mat-button (click)="submitNotification()">Notificame</button>
+<p *ngIf="isGranted" class="success">Notificaciones otorgadas pro el usuario.</p>
+<p *ngIf="!isGranted" class="error">La notificaciones no están disponibles en el navegador o no estan habilitadas en la aplicación.</p> -->
+
+<div class="row">
+    <div class="col-12">
+        <button mat-button (click)="toggleSubscription()"
+            [disabled]="notificationService.pushNotificationStatus.isInProgress || !notificationService.pushNotificationStatus.isSupported">
+            <span *ngIf="!notificationService.pushNotificationStatus.isSupported">Push is NOT supported by this
+                device</span>
+            <span
+                *ngIf="notificationService.pushNotificationStatus.isSupported && notificationService.pushNotificationStatus.isSubscribed">Unsubscribe</span>
+            <span
+                *ngIf="notificationService.pushNotificationStatus.isSupported && !notificationService.pushNotificationStatus.isSubscribed">Subscribe</span>
+        </button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <mat-list role="list">
+            <mat-list-item role="listitem" *ngFor="let item of notificationService.notifications">
+                <a [routerLink]="cleanUrl(item.Url)" (click)="removeNotif(item)">
+                    {{item.Title}}
+                    <small>{{item.Message}}</small>
+                </a>
+            </mat-list-item>
+        </mat-list>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <mat-card class="neotification-card">
+            <mat-card-header>
+                <div mat-card-avatar>-</div>
+                <mat-card-title>Notifications</mat-card-title>
+                <mat-card-subtitle>send notifications</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <form class="notifications-form" [formGroup]="notificationFG">
+                    <div class="col-4">
+                        <mat-form-field id="input-notification-title">
+                            <mat-label>Title</mat-label>
+                            <input matInput placeholder="Title" formControlName="input-notification-title">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field id="input-notification-message">
+                            <mat-label>Message</mat-label>
+                            <input matInput placeholder="Message" formControlName="input-notification-message">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field id="input-notification-url">
+                            <mat-label>Url</mat-label>
+                            <input matInput placeholder="Url" formControlName="input-notification-url">
+                        </mat-form-field>
+                    </div>
+                </form>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button (click)="broadcast()">Broadcast</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>
