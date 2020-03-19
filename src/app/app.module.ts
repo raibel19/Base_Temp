@@ -15,6 +15,7 @@ import { PwaService } from './services/pwa/pwa.service';
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS, MomentDateAdapter, MAT_MOMENT_DATE_FORMATS } from '@angular/material-moment-adapter';
 import { MAT_DATE_LOCALE, MAT_DATE_FORMATS, DateAdapter } from '@angular/material/core';
 import { SwModule } from './modules/serviceWorker/sw.module';
+import { UpdatesService } from './services/pwa/sw/updates/updates.service';
 
 const initializer = (pwaService: PwaService) => () => pwaService.initPwaPrompt();
 
@@ -43,6 +44,10 @@ const initializer = (pwaService: PwaService) => () => pwaService.initPwaPrompt()
 })
 export class AppModule {
   constructor(
+    private updateService: UpdatesService
   ) {
+    updateService.promptUpdate();
+    updateService.logUpdate();
+    updateService.checkForUpdate();
   }
 }

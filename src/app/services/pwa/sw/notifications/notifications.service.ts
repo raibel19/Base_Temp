@@ -16,7 +16,7 @@ export class NotificationsService {
     isSupported: false,
     isInProgress: false
   };
-  public notifications: Array<any>;
+  public notifications: Array<any> = [];
   private readonly options: any = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -42,9 +42,11 @@ export class NotificationsService {
     } else {
       this.pushNotificationStatus.isSupported = false;
     }
-    debugger;
-    navigator.serviceWorker.addEventListener('message', (event) => {
-      this.notifications.push(event.data);
+
+    navigator.serviceWorker.addEventListener('message', event => {
+      if (event.data.type === 'PUSH' && event.data.data.Title) {
+        this.notifications.push(event.data.data);
+      }
     });
   }
 

@@ -14,7 +14,6 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(
     private notificationsService: NotificationsService
   ) {
-    debugger
     notificationsService.init();
   }
 

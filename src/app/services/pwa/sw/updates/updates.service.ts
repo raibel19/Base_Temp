@@ -2,6 +2,7 @@ import { Injectable, ApplicationRef } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
 import { first } from 'rxjs/operators';
 import { interval, concat } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -10,13 +11,13 @@ export class UpdatesService {
 
   constructor(
     private appRef: ApplicationRef,
-    private updates: SwUpdate) { }
+    private updates: SwUpdate,
+    private snackbar: MatSnackBar) { }
 
   public checkForUpdate() {
-    debugger
     // Allow the app to stabilize first, before starting polling for updates with `interval()`.
     const appIsStable$ = this.appRef.isStable.pipe(first(isStable => isStable === true));
-    const everySixHours$ = interval(6 * 60 * 60 * 1000);
+    const everySixHours$ = interval(6000);
     const everySixHoursOnceAppIsStable$ = concat(appIsStable$, everySixHours$);
     everySixHoursOnceAppIsStable$.subscribe(() => this.updates.checkForUpdate());
   }
@@ -34,8 +35,17 @@ export class UpdatesService {
 
   public promptUpdate() {
     this.updates.available.subscribe(evt => {
-      debugger
-      this.updates.activateUpdate().then(() => document.location.reload());
+      const snack = this.snackbar.open('Actualización disponible', 'Recargar');
+      snack
+        .onAction()
+        .subscribe(() => {
+          this.updates.activateUpdate().then(() => document.location.reload());
+        });
+
+      setTimeout(() => {
+        snack.dismiss();
+      }, 180000);
+      // this.updates.activateUpdate().then(() => document.location.reload());
     });
   }
 }

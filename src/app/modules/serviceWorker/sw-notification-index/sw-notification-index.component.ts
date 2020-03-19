@@ -25,7 +25,7 @@ export class SwNotificationIndexComponent implements OnInit, OnDestroy {
     this.buildForm();
   }
 
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void { }
 
   private buildForm(): void {
     this.notificationFG = this.formBuilder.group({
@@ -40,7 +40,9 @@ export class SwNotificationIndexComponent implements OnInit, OnDestroy {
   }
 
   public cleanUrl(url: string) {
-    debugger
+    if (!url) {
+      return '';
+    }
     if (url.indexOf(self.location.origin) >= 0) {
       return url.replace(self.location.origin, '');
     }
@@ -48,7 +50,9 @@ export class SwNotificationIndexComponent implements OnInit, OnDestroy {
   }
 
   public removeNotif(notif: string) {
-    debugger
+    if (!notif) {
+      return;
+    }
     const index = this.notificationService.notifications.indexOf(notif);
     if (index >= 0) {
       this.notificationService.notifications.splice(index, 1);
@@ -56,7 +60,6 @@ export class SwNotificationIndexComponent implements OnInit, OnDestroy {
   }
 
   public broadcast() {
-    debugger
     const notValues = this.notificationFG.value;
     const model: INotificationModel = {
       title: notValues['input-notification-title'],

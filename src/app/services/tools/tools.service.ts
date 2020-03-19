@@ -9,7 +9,6 @@ export class ToolsService {
   constructor() { }
 
   public Unsusbscribe(subs: Subscription | Array<Subscription>): void {
-    debugger
     if (Array.isArray(subs)) {
       subs.forEach((a, e) => {
         if (a) {

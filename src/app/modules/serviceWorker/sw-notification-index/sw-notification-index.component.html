@@ -20,8 +20,8 @@
         <mat-list role="list">
             <mat-list-item role="listitem" *ngFor="let item of notificationService.notifications">
                 <a [routerLink]="cleanUrl(item.Url)" (click)="removeNotif(item)">
-                    {{item.Title}}
-                    <small>{{item.Message}}</small>
+                    Titulo: {{item.Title}}
+                    Mensaje:<small>{{item.Message}}</small>
                 </a>
             </mat-list-item>
         </mat-list>
