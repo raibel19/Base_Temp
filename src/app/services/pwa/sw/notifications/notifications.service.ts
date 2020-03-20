@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { IPushSubscription, INotificationModel, IVapidDetails } from 'src/app/shared/interfaces/pwa/sw/notification.interface';
-import { Observable, Subject, Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { takeUntil } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +27,9 @@ export class NotificationsService {
   ) { }
 
   public init(): void {
+    if (!environment.production) {
+      return;
+    }
     if ('serviceWorker' in navigator && 'PushManager' in window) {
       navigator.serviceWorker.register('/assets/js/pwa/sw/sw.js')
         .then(swReg => {

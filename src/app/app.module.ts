@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppMaterialModule } from './app-material.module';
 import { PwaModule } from './pwa/pwa.module';
@@ -16,12 +16,15 @@ import { MAT_MOMENT_DATE_ADAPTER_OPTIONS, MomentDateAdapter, MAT_MOMENT_DATE_FOR
 import { MAT_DATE_LOCALE, MAT_DATE_FORMATS, DateAdapter } from '@angular/material/core';
 import { SwModule } from './modules/serviceWorker/sw.module';
 import { UpdatesService } from './services/pwa/sw/updates/updates.service';
+import { LoaderInterceptorService } from './interceptors/loaderInterceptor/loader-interceptor.service';
+import { ProgressBarComponent } from './loaders/progress-bar/progress-bar.component';
 
 const initializer = (pwaService: PwaService) => () => pwaService.initPwaPrompt();
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ProgressBarComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,8 @@ const initializer = (pwaService: PwaService) => () => pwaService.initPwaPrompt()
     { provide: MAT_DATE_LOCALE, useValue: 'es-MX' },
     { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true, strict: true } },
     { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS] },
-    { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS }
+    { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptorService, multi: true }
   ],
   bootstrap: [AppComponent]
 })
@@ -46,8 +50,8 @@ export class AppModule {
   constructor(
     private updateService: UpdatesService
   ) {
-    updateService.promptUpdate();
-    updateService.logUpdate();
-    updateService.checkForUpdate();
+    // updateService.promptUpdate();
+    // updateService.logUpdate();
+    // updateService.checkForUpdate();
   }
 }
