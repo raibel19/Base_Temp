@@ -19,6 +19,8 @@ import { UpdatesService } from './services/pwa/sw/updates/updates.service';
 import { LoaderInterceptorService } from './interceptors/loader/loader-interceptor.service';
 import { ProgressBarComponent } from './loaders/progress-bar/progress-bar.component';
 import { NoCacheInterceptorService } from './interceptors/noCache/no-cache-interceptor.service';
+import { UrlSerializer } from '@angular/router';
+import { UrlSensitiveService } from './services/urlSensitive/url-sensitive.service';
 
 const initializer = (pwaService: PwaService) => () => pwaService.initPwaPrompt();
 
@@ -44,7 +46,8 @@ const initializer = (pwaService: PwaService) => () => pwaService.initPwaPrompt()
     { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS] },
     { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
     { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptorService, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: NoCacheInterceptorService, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: NoCacheInterceptorService, multi: true },
+    { provide: UrlSerializer, useClass: UrlSensitiveService }
   ],
   bootstrap: [AppComponent]
 })

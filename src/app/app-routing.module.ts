@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'swNotification',
+    path: 'swnotification',
     loadChildren: () => import('./modules/serviceWorker/sw.module').then(mod => mod.SwModule)
   }
 ];
