@@ -1,0 +1,69 @@
+<main>
+    <div>
+        <div *ngIf="data?.error">
+            <p style="width: 7em">ERROR {{ data?.error}}</p>
+            <p style="width: 7em" *ngIf="data?.error === 404">Not found :(</p>
+        </div>
+        <div *ngIf="routeParams.message">
+            <p style="width: 7em" *ngIf="routeParams?.status"> ERROR {{ routeParams?.status }}</p><br />
+            <!-- <h3 *ngIf="routeParams?.message">{{ routeParams?.message }}</h3><br /> -->
+            <p style="width: 7em" *ngIf="routeParams?.message">AN ERROR HAS OCCURRED</p><br />
+            <!-- <h1 *ngIf="routeParams?.url && routeParams?.url !== '/'">Error in {{ routeParams?.url | uppercase }}
+                        page,
+                        sorry {{ routeParams?.user }} :(
+                    </h1> -->
+        </div>
+        <div *ngIf="!routeParams && !data">
+            <p style="width: 7em">Unknown error, sorry :(</p>
+        </div>
+        <!-- <div>
+                <span>404&nbsp;error</span>
+                <span>page&nbsp;not&nbsp;found</span>
+            </div> -->
+        <!-- <svg viewBox='0 0 200 600'>
+                <polygon
+                    points='118.302698 8 59.5369448 66.7657528 186.487016 193.715824 14 366.202839 153.491505 505.694344 68.1413353 591.044514 200 591.044514 200 8'>
+                </polygon>
+            </svg> -->
+    </div>
+    <svg class='crack' viewBox='0 0 200 600' style="margin: 1em !important">
+        <polyline
+            points='118.302698 8 59.5369448 66.7657528 186.487016 193.715824 14 366.202839 153.491505 505.694344 68.1413353 591.044514'>
+        </polyline>
+    </svg>
+    <div>
+        <!-- <svg viewBox='0 0 200 600'>
+                <polygon
+                    points='118.302698 8 59.5369448 66.7657528 186.487016 193.715824 14 366.202839 153.491505 505.694344 68.1413353 591.044514 0 591.044514 0 8'>
+                </polygon>
+            </svg> -->
+        <div>
+            <!-- <span>sorry&nbsp;about&nbsp;that!</span> -->
+            <span>
+                <div *ngIf="data?.error">
+                    <a mat-raised-button [routerLink]="'/'">
+                        <h5>Go Home</h5>
+                    </a>
+                </div>
+                <div *ngIf="routeParams.message">
+                    <a mat-raised-button [routerLink]="routeParams?.url"
+                        *ngIf="routeParams?.url && routeParams.status !== '404'">
+                        <h5>Go Back to {{routeParams?.url}}</h5>
+                    </a>
+                    <a mat-raised-button routerLink="/" *ngIf="!routeParams.url || routeParams.status === '404'">
+                        <h5>Go Back to home</h5>
+                    </a>
+                </div>
+                <div *ngIf="!routeParams && !data">
+                    <a mat-raised-button [routerLink]="'/login'">
+                        <h5>Go Home</h5>
+                    </a>
+                </div>
+            </span>
+        </div>
+    </div>
+    <div class="messagereport" *ngIf="routeParams.message">
+        <p *ngIf="routeParams?.id">This error has been reported to the Administrator with the ID: {{ routeParams?.id}}
+        </p>
+    </div>
+</main>

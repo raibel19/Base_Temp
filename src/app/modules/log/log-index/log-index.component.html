@@ -1,0 +1,58 @@
+<div class="container">
+    <div>
+        <h1>Log</h1>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="d-flex flex-column d-sm-block">
+                <mat-button-toggle-group name="errorsActions" class="errorButtonToogleGroup">
+                    <mat-button-toggle (click)="fireClientError();">Client Error</mat-button-toggle>
+                    <mat-button-toggle (click)="fireServerError();">Server Error</mat-button-toggle>
+                    <mat-button-toggle routerLink="/page">Go to Page (Resolve failure)</mat-button-toggle>
+                    <mat-button-toggle (click)="downloadErros();">Download errors</mat-button-toggle>
+                    <mat-button-toggle (click)="clearErrors();">Clear</mat-button-toggle>
+                </mat-button-toggle-group>
+                <!-- <button mat-raised-button color="accent" (click)="downloadErros()"
+                    class="mb-2 mb-sm-0 mr-sm-2">{{'log.index.download_errors_button' | translate}}</button>
+                <button mat-raised-button color="accent"
+                    (click)="clearErrors()">{{'log.index.clear_errors_button' | translate}}</button> -->
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <mat-card class="error-card mt-3">
+                <mat-card-header>
+                    <div mat-card-avatar class="error-header-image">
+                        <mat-icon class="matIconTitleError">bug_report</mat-icon>
+                    </div>
+                    <mat-card-title>
+                        <h3>Errores</h3>
+                    </mat-card-title>
+                    <mat-card-subtitle></mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-accordion *ngIf="errorLog" [displayMode]="'flat'">
+                        <mat-expansion-panel *ngFor="let item of errorLog" class="border mat-elevation-z0">
+
+                            <mat-expansion-panel-header>
+                                <div class="d-flex">
+                                    <mat-panel-title>
+                                        <mat-icon class="matIconBodyError">bug_report</mat-icon>
+                                    </mat-panel-title>
+
+                                    <mat-panel-description>
+                                        <h5>{{item.timestampFormat}}</h5>
+                                    </mat-panel-description>
+                                </div>
+                            </mat-expansion-panel-header>
+
+                            <ngx-json-viewer mat-line [json]="item" [expanded]="false"></ngx-json-viewer>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                    <p *ngIf="!errorLog || errorLog.length === 0">No hay errores</p>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>

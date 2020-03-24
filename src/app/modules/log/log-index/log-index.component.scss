@@ -1,0 +1,30 @@
+::ng-deep mat-accordion {
+  width: 100% !important;
+}
+
+.error-card {
+  width: 100%;
+}
+
+.error-header-image {
+  background-size: cover;
+}
+
+.error-selected-value {
+  margin: 15px 0;
+}
+
+::ng-deep .errorButtonToogleGroup {
+  width: fit-content !important;
+}
+
+::ng-deep .matIconTitleError {
+  font-size: 2em;
+  color: red;
+  border: dashed;
+}
+
+::ng-deep .matIconBodyError {
+  font-size: 2em;
+  color: red;
+}

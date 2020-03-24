@@ -1,0 +1,20 @@
+<div class="container h-100 p-1">
+    <div class="row align-items-center h-100">
+        <div class="col-10">
+            <div class="d-flex flex-row align-items-center">
+                <mat-icon class="mr-2" [style.color]="data.colorIcon">{{data.icon}}</mat-icon>
+                <div class="data">{{data.message}}</div>
+            </div>
+        </div>
+        <div class="col-2">
+            <button *ngIf="data.closeBtn" mat-icon-button (click)="snackBarRed.dismiss()">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+        <div *ngIf="data.bugFlag" class="align-items-center align-content-center text-center w-100">
+            <div class="col-12">
+                <a mat-stroked-button routerLink="/log">Más detalles</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -21,6 +21,8 @@ import { ProgressBarComponent } from './loaders/progress-bar/progress-bar.compon
 import { NoCacheInterceptorService } from './interceptors/noCache/no-cache-interceptor.service';
 import { UrlSerializer } from '@angular/router';
 import { UrlSensitiveService } from './services/urlSensitive/url-sensitive.service';
+import { ErrorsModule } from './errors/errors.module';
+import { TemplatesModule } from './templates/templates.module';
 
 const initializer = (pwaService: PwaService) => () => pwaService.initPwaPrompt();
 
@@ -38,6 +40,8 @@ const initializer = (pwaService: PwaService) => () => pwaService.initPwaPrompt()
     AppMaterialModule,
     PwaModule,
     SwModule,
+    ErrorsModule,
+    TemplatesModule,
   ],
   providers: [
     { provide: APP_INITIALIZER, useFactory: initializer, deps: [PwaService], multi: true },
