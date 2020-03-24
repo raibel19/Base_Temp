@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
 import { NotificationsService } from './services/pwa/sw/notifications/notifications.service';
 import { LoaderService } from './services/loader/loader.service';
+import { InternetConnectionService } from './services/internetConnection/internet-connection.service';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +13,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor(
     private notificationsService: NotificationsService,
-    private loaderService: LoaderService
+    private loaderService: LoaderService,
+    private internetConnectionService: InternetConnectionService
   ) {
     notificationsService.init();
     loaderService.stupRouterLoader();
@@ -24,5 +25,6 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.loaderService.subscriptions.unsubscribe();
     this.notificationsService.subscriptions.unsubscribe();
+    this.internetConnectionService.onDestroy();
   }
 }
