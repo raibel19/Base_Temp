@@ -6,6 +6,16 @@ import { InternetConnectionService } from './services/internetConnection/interne
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('./modules/home/home.module').then(mod => mod.HomeModule),
+    canActivate: [InternetConnectionService]
+  },
+  {
     path: 'swnotification',
     loadChildren: () => import('./modules/serviceWorker/sw.module').then(mod => mod.SwModule),
     canActivate: [InternetConnectionService]

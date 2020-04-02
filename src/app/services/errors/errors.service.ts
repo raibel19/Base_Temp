@@ -89,7 +89,7 @@ export class ErrorsService {
   }
 
   public getError(controlName: string, formGroup: FormGroup, errorIntf?: Array<Error>, isSubmit: boolean = false): string {
-    debugger;
+    // debugger;
     let error = null;
     const control = formGroup.get(controlName);
     for (const item in control.errors) {
@@ -114,7 +114,7 @@ export class ErrorsService {
   }
 
   private getValidatorErrorMessage(validatorName: string, validatorValue?: any, errorIntf?: Array<Error>): Array<any> {
-    debugger;
+    // debugger;
     const errorList: Array<any> = [];
     if (errorIntf) {
       errorIntf.forEach(fe => {

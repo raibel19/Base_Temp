@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LogIndexComponent } from './log-index/log-index.component';
+import { MainLayoutIndexComponent } from 'src/app/layouts/main-layout-index/main-layout-index.component';
 
 
 const routes: Routes = [
   {
     path: '',
-    // component:
+    component: MainLayoutIndexComponent,
     children: [
       {
         path: '',

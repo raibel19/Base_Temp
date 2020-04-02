@@ -26,7 +26,7 @@ export class InternetConnectionService implements CanActivate {
   }
 
   public canActivate(): boolean {
-    debugger
+    // debugger
     if (!navigator.onLine) {
       this.zone.run(() =>
         this.snackBarService.showForComponent(SnackbarIndexComponent, {

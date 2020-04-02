@@ -59,8 +59,8 @@ export class AppModule {
   constructor(
     private updateService: UpdatesService
   ) {
-    // updateService.promptUpdate();
-    // updateService.logUpdate();
-    // updateService.checkForUpdate();
+    updateService.promptUpdate();
+    updateService.logUpdate();
+    updateService.checkForUpdate();
   }
 }

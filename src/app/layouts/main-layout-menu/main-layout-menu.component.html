@@ -1,0 +1,50 @@
+<ng-container *ngFor="let nav of navList">
+    <ng-container *ngIf="nav.children; then navWithChildren; else singleNav;"></ng-container>
+    <ng-template #singleNav>
+        <a [ngClass]="{'link-width': showMenu}" mat-list-item [routerLink]="nav.path" class="text-center"
+            routerLinkActive="activeRoute" [routerLinkActiveOptions]="{exact: true}" *ngIf="nav.showInMenu">
+            <mat-icon>{{nav.icon}}</mat-icon><span *ngIf="showMenu" class="ml-2 nav-text">{{nav.title}}</span>
+        </a>
+    </ng-template>
+    <ng-template #navWithChildren>
+        <mat-accordion *ngIf="nav.showInMenu">
+            <mat-expansion-panel class="mat-elevation-z0 bg-drawer">
+                <mat-expansion-panel-header class="px-3">
+                    <mat-panel-title>
+                        <mat-icon [ngClass]="{'activeRoute': isChildRouteActive(nav)}">{{nav.icon}}</mat-icon>
+                        <span *ngIf="showMenu" class="ml-2 nav-text">{{nav.title}}</span>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-nav-list>
+                    <ng-container *ngFor="let child of nav.children">
+                        <a [ngClass]="{'link-width': showMenu}" *ngIf="child.showInMenu" mat-list-item
+                            [routerLink]="nav.path" routerLinkActive="activeRoute"
+                            [routerLinkActiveOptions]="{exact: true}">
+                            <mat-icon>{{child.icon}}</mat-icon>
+                            <span *ngIf="showMenu" class="ml-2 nav-text">{{child.title}}</span>
+                        </a>
+                    </ng-container>
+                </mat-nav-list>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </ng-template>
+</ng-container>
+
+<a [ngClass]="{'link-width': showMenu}" mat-list-item [matMenuTriggerFor]="themeMenu">
+    <mat-icon>palette</mat-icon>
+    <span *ngIf="showMenu" class="ml-2 nav-text">Temas</span>
+</a>
+<a [ngClass]="{'link-width': showMenu}" mat-list-item [matMenuTriggerFor]="languageMenu">
+    <mat-icon>language</mat-icon>
+    <span *ngIf="showMenu" class="ml-2 nav-text">Idioma</span>
+</a>
+
+<mat-menu #themeMenu>
+    <button mat-menu-item>Primario</button>
+    <button mat-menu-item>Secundario</button>
+</mat-menu>
+
+<mat-menu #languageMenu>
+    <button mat-menu-item>Español</button>
+    <button mat-menu-item>Ingles</button>
+</mat-menu>

@@ -4,9 +4,10 @@
 
 html,
 body {
+  background-color: #fafafa;
   height: 100%;
 }
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+
+p, span, text, button, div, a {
+  font-size: 13px !important;
 }

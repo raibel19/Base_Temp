@@ -1,0 +1,69 @@
+<mat-toolbar color="primary" class="p-0 p-md-3 fixed-top border-bottom">
+    <div class="d-flex mx-2 md-sm-0 noInternetText" *ngIf="!internetConnection" (click)="onToggleSidenav()">
+        <mat-icon>signal_wifi_off</mat-icon>
+    </div>
+    <div class="d-flex mx-2 md-sm-0" *ngIf="internetConnection" (click)="onToggleSidenav()">
+        <img src="../../../assets/images/logo.png" class="img-logo" alt="app logo">
+    </div>
+    <div class="d-flex align-middle" *ngIf="!breakpointObserver.isMatched(xsBreakpoint)">
+        <a routerLink="/">{{title}}</a>
+    </div>
+    <div class="d-flex">
+        <button mat-icon-button (click)="onToggleSidenav()">
+            <mat-icon>menu</mat-icon>
+        </button>
+    </div>
+    <div class="d-flex flex-fill justify-content-end pr-3">
+        <ng-container *ngFor="let nav of navList">
+            <ng-container *ngIf="nav.showInXs || !breakpointObserver.isMatched(xsBreakpoint)"
+                [ngSwitch]="getMenuType(nav)">
+                <!-- nav.useOnlyIcon -->
+                <ng-container *ngSwitchCase="1">
+                    <button mat-icon-button [routerLink]="nav.path" [routerLinkActive]="['active-route-header']"
+                        [routerLinkActiveOptions]="{exact: true}">
+                        <mat-icon>{{nav.icon}}</mat-icon>
+                    </button>
+                </ng-container>
+                <!-- !nav.children -->
+                <ng-container *ngSwitchCase="2">
+                    <button mat-button [routerLink]="nav.path" routerLinkActive="active-route-header"
+                        [routerLinkActiveOptions]="{exact: true}">
+                        {{nav.title}}
+                    </button>
+                </ng-container>
+                <!-- nav.children -->
+                <ng-container *ngSwitchCase="3">
+                    <button mat-button [matMenuTriggerFor]="menu"
+                        [ngClass]="{'active-route-header': isChildRouteActive(nav)}">
+                        {{nav.title}}<mat-icon class="dropdown-icon">arrow_drop_down</mat-icon>
+                    </button>
+                    <mat-menu #menu>
+                        <button mat-menu-item *ngFor="let child of nav.children" [routerLink]="child.path">
+                            {{child.title}}
+                        </button>
+                    </mat-menu>
+                </ng-container>
+            </ng-container>
+        </ng-container>
+        <button mat-icon-button routerLink="/notificaciones" routerLinkActive="active-route-header"
+            [routerLinkActiveOptions]="{exact: true}">
+            <mat-icon [matBadge]="notificationBadges" [matBadgeHidden]="notificationBadges === 0" matBadgeColor="warn">
+                notifications
+            </mat-icon>
+        </button>
+        <button mat-icon-button>
+            <mat-icon>account_circle</mat-icon>
+        </button>
+        <button mat-icon-button [matMenuTriggerFor]="optionsMenu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+    </div>
+</mat-toolbar>
+
+<mat-menu #optionsMenu>
+    <button mat-menu-item>Item 1</button>
+    <button mat-menu-item>Item 2</button>
+    <button mat-menu-item>Item 3</button>
+    <button mat-menu-item>Item 4</button>
+    <button mat-menu-item>Item 5</button>
+</mat-menu>

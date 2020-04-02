@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { SwNotificationIndexComponent } from './sw-notification-index/sw-notification-index.component';
 import { MainLayoutIndexComponent } from 'src/app/layouts/main-layout-index/main-layout-index.component';
+import { HomeIndexComponent } from './home-index/home-index.component';
 
 
 const routes: Routes = [
@@ -11,7 +11,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: SwNotificationIndexComponent
+        component: HomeIndexComponent
       }
     ]
   }
@@ -21,4 +21,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class SwRoutingModule { }
+export class HomeRoutingModule { }

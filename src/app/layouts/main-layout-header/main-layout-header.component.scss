@@ -1,0 +1,78 @@
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~@angular/material/theming";
+@import "../../../styles/material/variables";
+
+mat-toolbar {
+  z-index: 1000 !important;
+}
+
+// img.avatar {
+//   display: block;
+//   max-height: 36px;
+//   width: auto;
+//   height: auto;
+//   cursor: pointer;
+//   border-radius: 50%;
+// }
+
+.img-logo {
+  height: 35px;
+  min-width: 100;
+}
+
+.dropdown-icon {
+  position: absolute;
+  margin-top: 5px;
+  margin-right: 20px;
+}
+
+@mixin theme-specific($theme) {
+  $app-primary: map-get($theme, primary);
+  $app-accent: map-get($theme, accent);
+  $accent-color: mat-color($app-accent);
+
+  a {
+    text-decoration: none;
+    color: color-yiq(mat-color($app-primary));
+  }
+
+  // img.avatar {
+  //   border: 1px solid color-yiq(mat-color($app-primary));
+  // }
+
+  .active-route-header {
+    .mat-button-wrapper::after {
+      position: absolute;
+      content: "";
+      border-bottom: 3px $accent-color solid;
+      width: 100%;
+      left: 0;
+      bottom: -12px;
+    }
+
+    @include media-breakpoint-down(sm) {
+      .mat-button-wrapper::after {
+        bottom: -7px !important;
+      }
+    }
+  }
+}
+
+// ::ng-deep .main-theme {
+@include theme-specific($main-theme);
+// }
+
+// ::ng-deep .secondary-theme {
+//   @include theme-specific($secondary-theme);
+// }
+
+.noInternetText {
+  width: 28px;
+  height: 35px;
+  font-size: 28px !important;
+  background: -webkit-linear-gradient(#d80000, #f00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

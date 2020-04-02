@@ -1,0 +1,17 @@
+<app-main-layout-header (sidenavToggle)="sideNavToggle()" class="mat-elevation-z8"></app-main-layout-header>
+<mat-drawer-container autosize>
+    <mat-drawer #sidenav *ngIf="breakpointObserver.isMatched(xsBreakpoint)" opened mode="side">
+        <app-main-layout-sidenav [navList]="navList" (sidenavClose)="sidenav.close()"></app-main-layout-sidenav>
+    </mat-drawer>
+    <mat-drawer #menu *ngIf="!breakpointObserver.isMatched(xsBreakpoint)" opened mode="side"
+        class="side-menu bg-drawner">
+        <mat-nav-list>
+            <app-main-layout-menu [navList]="navList" [showMenu]="showMenu"></app-main-layout-menu>
+        </mat-nav-list>
+    </mat-drawer>
+    <mat-drawer-content>
+        <div class="app-main">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-drawer-content>
+</mat-drawer-container>

@@ -1,0 +1,86 @@
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~@angular/material/theming";
+@import "../../../styles/material/variables";
+
+::ng-deep mat-expansion-panel {
+    .mat-expansion-indicator {
+        height: 26px !important;
+    }
+}
+
+::ng-deep .mat-expansion-panel-body {
+  padding-left: 8px !important;
+  padding-right: 8px !important;
+}
+
+::ng-deep .mat-content {
+  display: inline !important;
+}
+
+@mixin theme-specific(
+  $theme,
+  $sidenav-bg-color,
+  $sidenav-expand-border-color,
+  $sidenav-active-color
+) {
+  $app-primary: map-get($theme, primary);
+  $primary-color: mat-color($app-primary);
+
+  $accent-color: mat-color(map-get($theme, accent));
+
+  .activeRoute {
+    color: rgba($color: $sidenav-active-color, $alpha: 0.85) !important;
+  }
+
+  ::ng-deep mat-expansion-panel {
+    &.mat-expanded {
+      border-top-left-radius: 0 !important;
+      border-bottom-left-radius: 0 !important;
+      border-top-right-radius: 0 !important;
+      border-bottom-right-radius: 0 !important;
+      border-right: 3px $sidenav-expand-border-color solid;
+    }
+  }
+
+  ::ng-deep .bg-drawer {
+    background-color: $sidenav-bg-color !important;
+
+    :hover {
+      background-color: $sidenav-bg-color !important;
+    }
+
+    mat-icon,
+    .nav-text,
+    .mat-expansion-indicator::after {
+      color: rgba($color: color-yiq($sidenav-bg-color), $alpha: 0.85);
+    }
+
+    .activeRoute {
+      mat-icon,
+      .nav-text,
+      .mat-expansion-indicator::after {
+        color: rgba($color: $sidenav-active-color, $alpha: 0.85) !important;
+      }
+    }
+  }
+}
+
+// ::ng-deep .main-theme {
+@include theme-specific(
+  $main-theme,
+  $main-sidenav-bg-color,
+  $main-sidenav-border-color,
+  $main-sidenav-active-color
+);
+// }
+
+// ::ng-deep .secondary-theme {
+//   @include theme-specific(
+//     $secondary-theme,
+//     $secondary-sidenav-bg-color,
+//     $secondary-sidenav-border-color,
+//     $secondary-sidenav-active-color
+//   );
+// }
