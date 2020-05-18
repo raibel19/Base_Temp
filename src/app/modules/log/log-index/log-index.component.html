@@ -6,11 +6,11 @@
         <div class="col">
             <div class="d-flex flex-column d-sm-block">
                 <mat-button-toggle-group name="errorsActions" class="errorButtonToogleGroup">
-                    <mat-button-toggle (click)="fireClientError();">Client Error</mat-button-toggle>
-                    <mat-button-toggle (click)="fireServerError();">Server Error</mat-button-toggle>
-                    <mat-button-toggle routerLink="/page">Go to Page (Resolve failure)</mat-button-toggle>
-                    <mat-button-toggle (click)="downloadErros();">Download errors</mat-button-toggle>
-                    <mat-button-toggle (click)="clearErrors();">Clear</mat-button-toggle>
+                    <mat-button-toggle (click)="fireClientError();" aria-label="Client Error">Client Error</mat-button-toggle>
+                    <mat-button-toggle (click)="fireServerError();" aria-label="Server Error">Server Error</mat-button-toggle>
+                    <mat-button-toggle routerLink="/page" aria-label="Go to Page">Go to Page (Resolve failure)</mat-button-toggle>
+                    <mat-button-toggle (click)="downloadErros();" aria-label="Download Errors">Download errors</mat-button-toggle>
+                    <mat-button-toggle (click)="clearErrors();" aria-label="Clear">Clear</mat-button-toggle>
                 </mat-button-toggle-group>
                 <!-- <button mat-raised-button color="accent" (click)="downloadErros()"
                     class="mb-2 mb-sm-0 mr-sm-2">{{'log.index.download_errors_button' | translate}}</button>

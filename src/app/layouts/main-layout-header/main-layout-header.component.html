@@ -9,7 +9,7 @@
         <a routerLink="/">{{title}}</a>
     </div>
     <div class="d-flex">
-        <button mat-icon-button (click)="onToggleSidenav()">
+        <button mat-icon-button (click)="onToggleSidenav()" aria-label="Menu">
             <mat-icon>menu</mat-icon>
         </button>
     </div>
@@ -20,25 +20,25 @@
                 <!-- nav.useOnlyIcon -->
                 <ng-container *ngSwitchCase="1">
                     <button mat-icon-button [routerLink]="nav.path" [routerLinkActive]="['active-route-header']"
-                        [routerLinkActiveOptions]="{exact: true}">
+                        [routerLinkActiveOptions]="{exact: true}" attr.aria-label="{{nav.title}}">
                         <mat-icon>{{nav.icon}}</mat-icon>
                     </button>
                 </ng-container>
                 <!-- !nav.children -->
                 <ng-container *ngSwitchCase="2">
                     <button mat-button [routerLink]="nav.path" routerLinkActive="active-route-header"
-                        [routerLinkActiveOptions]="{exact: true}">
+                        [routerLinkActiveOptions]="{exact: true}" attr.aria-label="{{nav.title}}">
                         {{nav.title}}
                     </button>
                 </ng-container>
                 <!-- nav.children -->
                 <ng-container *ngSwitchCase="3">
                     <button mat-button [matMenuTriggerFor]="menu"
-                        [ngClass]="{'active-route-header': isChildRouteActive(nav)}">
+                        [ngClass]="{'active-route-header': isChildRouteActive(nav)}" attr.aria-label="{{nav.title}}">
                         {{nav.title}}<mat-icon class="dropdown-icon">arrow_drop_down</mat-icon>
                     </button>
                     <mat-menu #menu>
-                        <button mat-menu-item *ngFor="let child of nav.children" [routerLink]="child.path">
+                        <button mat-menu-item *ngFor="let child of nav.children" [routerLink]="child.path" attr.aria-label="{{child.title}}">
                             {{child.title}}
                         </button>
                     </mat-menu>
@@ -46,15 +46,15 @@
             </ng-container>
         </ng-container>
         <button mat-icon-button routerLink="/notificaciones" routerLinkActive="active-route-header"
-            [routerLinkActiveOptions]="{exact: true}">
+            [routerLinkActiveOptions]="{exact: true}" aria-label="Notifications">
             <mat-icon [matBadge]="notificationBadges" [matBadgeHidden]="notificationBadges === 0" matBadgeColor="warn">
                 notifications
             </mat-icon>
         </button>
-        <button mat-icon-button>
+        <button mat-icon-button aria-label="Cuenta">
             <mat-icon>account_circle</mat-icon>
         </button>
-        <button mat-icon-button [matMenuTriggerFor]="optionsMenu">
+        <button mat-icon-button [matMenuTriggerFor]="optionsMenu" aria-label="Opciones">
             <mat-icon>more_vert</mat-icon>
         </button>
     </div>

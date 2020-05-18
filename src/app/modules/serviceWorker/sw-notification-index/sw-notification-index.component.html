@@ -5,7 +5,7 @@
 <div class="row">
     <div class="col-12">
         <button mat-button (click)="toggleSubscription()"
-            [disabled]="notificationService.pushNotificationStatus.isInProgress || !notificationService.pushNotificationStatus.isSupported">
+            [disabled]="notificationService.pushNotificationStatus.isInProgress || !notificationService.pushNotificationStatus.isSupported" aria-label="Logo">
             <span *ngIf="!notificationService.pushNotificationStatus.isSupported">Push is NOT supported by this
                 device</span>
             <span
@@ -58,7 +58,7 @@
                 </form>
             </mat-card-content>
             <mat-card-actions>
-                <button mat-button (click)="broadcast()">Broadcast</button>
+                <button mat-button (click)="broadcast()" aria-label="Broadcast">Broadcast</button>
             </mat-card-actions>
         </mat-card>
     </div>
