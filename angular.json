@@ -71,8 +71,8 @@
           "options": {
             "browserTarget": "Base_Temp:build",
             "ssl": true,
-            "sslCert": "./ssl/selfsigned.crt",
-            "sslKey": "./ssl/selfsigned.key"
+            "sslCert": "./ssl/server.crt",
+            "sslKey": "./ssl/server.key"
           },
           "configurations": {
             "production": {
