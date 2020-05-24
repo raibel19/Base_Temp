@@ -1,0 +1,42 @@
+/* roboto-300 - latin_greek-ext_greek_cyrillic-ext_cyrillic */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  src: url('src/assets/fonts/Roboto/roboto-v20-latin_greek-ext_greek_cyrillic-ext_cyrillic-300.eot'); /* IE9 Compat Modes */
+  src: local('Roboto Light'), local('Roboto-Light'),
+       url('src/assets/fonts/Roboto/roboto-v20-latin_greek-ext_greek_cyrillic-ext_cyrillic-300.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('src/assets/fonts/Roboto/roboto-v20-latin_greek-ext_greek_cyrillic-ext_cyrillic-300.woff2') format('woff2'), /* Super Modern Browsers */
+       url('src/assets/fonts/Roboto/roboto-v20-latin_greek-ext_greek_cyrillic-ext_cyrillic-300.woff') format('woff'), /* Modern Browsers */
+       url('src/assets/fonts/Roboto/roboto-v20-latin_greek-ext_greek_cyrillic-ext_cyrillic-300.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('src/assets/fonts/Roboto/roboto-v20-latin_greek-ext_greek_cyrillic-ext_cyrillic-300.svg#Roboto') format('svg'); /* Legacy iOS */
+  font-display: swap;
+}
+/* roboto-regular - latin_greek-ext_greek_cyrillic-ext_cyrillic */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: url('src/assets/fonts/Roboto/roboto-v20-latin_greek-ext_greek_cyrillic-ext_cyrillic-regular.eot'); /* IE9 Compat Modes */
+  src: local('Roboto'), local('Roboto-Regular'),
+       url('src/assets/fonts/Roboto/roboto-v20-latin_greek-ext_greek_cyrillic-ext_cyrillic-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('src/assets/fonts/Roboto/roboto-v20-latin_greek-ext_greek_cyrillic-ext_cyrillic-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('src/assets/fonts/Roboto/roboto-v20-latin_greek-ext_greek_cyrillic-ext_cyrillic-regular.woff') format('woff'), /* Modern Browsers */
+       url('src/assets/fonts/Roboto/roboto-v20-latin_greek-ext_greek_cyrillic-ext_cyrillic-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('src/assets/fonts/Roboto/roboto-v20-latin_greek-ext_greek_cyrillic-ext_cyrillic-regular.svg#Roboto') format('svg'); /* Legacy iOS */
+  font-display: swap;
+}
+/* roboto-500 - latin_greek-ext_greek_cyrillic-ext_cyrillic */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: url('src/assets/fonts/Roboto/roboto-v20-latin_greek-ext_greek_cyrillic-ext_cyrillic-500.eot'); /* IE9 Compat Modes */
+  src: local('Roboto Medium'), local('Roboto-Medium'),
+       url('src/assets/fonts/Roboto/roboto-v20-latin_greek-ext_greek_cyrillic-ext_cyrillic-500.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('src/assets/fonts/Roboto/roboto-v20-latin_greek-ext_greek_cyrillic-ext_cyrillic-500.woff2') format('woff2'), /* Super Modern Browsers */
+       url('src/assets/fonts/Roboto/roboto-v20-latin_greek-ext_greek_cyrillic-ext_cyrillic-500.woff') format('woff'), /* Modern Browsers */
+       url('src/assets/fonts/Roboto/roboto-v20-latin_greek-ext_greek_cyrillic-ext_cyrillic-500.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('src/assets/fonts/Roboto/roboto-v20-latin_greek-ext_greek_cyrillic-ext_cyrillic-500.svg#Roboto') format('svg'); /* Legacy iOS */
+  font-display: swap;
+}

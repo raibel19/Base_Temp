@@ -9,8 +9,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "prod": "ng build --prod",
-    "server": "angular-http-server --https --key ../../ssl/server.key --cert ../../ssl/server.crt",
-    "httpServer": "http-server -p8080 -c-1 dist/Base_Temp -S -C ./ssl/server.crt -K ./ssl/server.key"
+    "server": "angular-http-server --https --key ../../ssl/server.key --cert ../../ssl/server.crt --baseHref app",
+    "httpServer": "http-server --gzip --proxy http://localhost:8080/app/ -p8080 -c-1 dist/Base_Temp -S -C ./ssl/server.crt -K ./ssl/server.key"
   },
   "private": true,
   "dependencies": {

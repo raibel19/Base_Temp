@@ -1,0 +1,5 @@
+User-Agent: *
+Disallow:
+Allow: /home
+Allow: /log
+Allow: /swnotification

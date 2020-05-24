@@ -7,9 +7,9 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 @NgModule({
   exports: [
-    MatButtonModule,
+    // MatButtonModule,
     MatSnackBarModule,
-    MatIconModule,
+    // MatIconModule,
     MatProgressBarModule,
     MatMomentDateModule
   ]

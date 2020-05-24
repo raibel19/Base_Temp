@@ -7,7 +7,8 @@ export const MENU_ROUTES: Array<NavModel> = [
         showInHeader: true,
         useOnlyIcon: true,
         showInXs: true,
-        showInMenu: false
+        showInMenu: false,
+        title: 'Inicio'
     }),
     new NavModel({
         icon: 'notifications',
