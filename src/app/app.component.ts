@@ -30,20 +30,20 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   private preloadElements(): void {
-    // const preloadElement = document.createElement('link');
-    // preloadElement.rel = 'preload';
-    // preloadElement.as = 'style';
-    // preloadElement.href = 'lazy-fonts.css';
-    // preloadElement.type = 'text/css';
-    // document.head.appendChild(preloadElement);
+    const preloadLazyFontsElement = document.createElement('link');
+    preloadLazyFontsElement.rel = 'preload';
+    preloadLazyFontsElement.as = 'style';
+    preloadLazyFontsElement.href = 'lazy-fonts.css';
+    preloadLazyFontsElement.type = 'text/css';
+    preloadLazyFontsElement.media = '';
+    preloadLazyFontsElement.onload = () => {
+      preloadLazyFontsElement.rel = 'stylesheet';
+      if (preloadLazyFontsElement.media !== 'all') {
+        preloadLazyFontsElement.media = 'all';
+      }
+    };
+    document.head.appendChild(preloadLazyFontsElement);
 
-    // const lazyStyleElement = document.createElement('link');
-    // lazyStyleElement.rel = 'stylesheet';
-    // lazyStyleElement.href = 'lazy-fonts.css';
-    // lazyStyleElement.type = 'text/css';
-    // lazyStyleElement.media = 'none';
-    // lazyStyleElement.onload = () => { if (lazyStyleElement.media !== 'all') { lazyStyleElement.media = 'all'; } };
-    // document.head.appendChild(lazyStyleElement);
 
     const preloadLazyStylesElement = document.createElement('link');
     preloadLazyStylesElement.rel = 'preload';

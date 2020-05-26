@@ -10,7 +10,7 @@ import * as StackTraceParser from 'error-stack-parser';
 import * as _moment from 'moment';
 import { default as _rollupMoment } from 'moment';
 const moment = _rollupMoment || _moment;
-import 'moment/min/locales';
+// import 'moment/min/locales';
 // SHARES VARIABLES
 import { SHARED_VARIABLES } from 'src/app/shared/variables.shared';
 // GUID

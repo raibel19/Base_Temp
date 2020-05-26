@@ -2,15 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
-    "types": [],
-    "paths": {
-      "moment": [
-        "../node_modules/moment/min/moment.min.js"
-      ]
-      // "moment-timezone":[
-      //   "../node_modules/moment-timezone/builds/moment-timezone-with-data-2012-2022.min.js"
-      // ]
-    }
+    "types": []
   },
   "files": [
     "src/main.ts",
