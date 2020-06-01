@@ -3,8 +3,8 @@
         <ng-container *ngIf="nav.children; then navWithChildren; else singleNav;"></ng-container>
         <ng-template #singleNav>
             <a mat-list-item [routerLink]="nav.path" (click)="onSidenavClose()" routerLinkActive="activeRoute"
-                [routerLinkActiveOptions]="{exact: true}">
-                <mat-icon>{{nav.icon}}</mat-icon>
+                [routerLinkActiveOptions]="{exact: true}" attr.aria-label="{{nav.title}}">
+                <mat-icon svgIcon="{{nav.icon}}"></mat-icon>
                 <span class="nav-caption"></span>{{nav.title}}
             </a>
         </ng-template>
@@ -13,15 +13,15 @@
                 <mat-expansion-panel class="mat-elevation-z0">
                     <mat-expansion-panel-header class="px-3">
                         <mat-panel-title>
-                            <mat-icon>{{nav.icon}}</mat-icon>
+                            <mat-icon svgIcon="{{nav.icon}}" attr.aria-label="{{nav.title}}"></mat-icon>
                             <span class="nav-caption"></span>{{nav.title}}
                         </mat-panel-title>
                     </mat-expansion-panel-header>
                     <mat-nav-list>
                         <a *ngFor="let child of nav.children" mat-list-item [routerLink]="child.path"
                             routerLinkActive="activeRoute" [routerLinkActiveOptions]="{exact: true}"
-                            (click)="onSidenavClose()">
-                            <mat-icon>{{child.icon}}</mat-icon>
+                            (click)="onSidenavClose()" attr.aria-label="{{child.title}}">
+                            <mat-icon svgIcon="{{child.icon}}"></mat-icon>
                             <span class="nav-caption"></span>{{child.title}}
                         </a>
                     </mat-nav-list>
@@ -33,7 +33,7 @@
         <mat-expansion-panel class="mat-elevation-z0">
             <mat-expansion-panel-header class="px-3">
                 <mat-panel-title>
-                    <mat-icon>palette</mat-icon>
+                    <mat-icon svgIcon="palette"></mat-icon>
                     <span class="nav-caption"></span>Temas
                 </mat-panel-title>
             </mat-expansion-panel-header>
@@ -51,7 +51,7 @@
         <mat-expansion-panel class="mat-elevation-z0">
             <mat-expansion-panel-header class="px-3">
                 <mat-panel-title>
-                    <mat-icon>language</mat-icon>
+                    <mat-icon svgIcon="language"></mat-icon>
                     <span class="nav-caption"></span>Idiomas
                 </mat-panel-title>
             </mat-expansion-panel-header>

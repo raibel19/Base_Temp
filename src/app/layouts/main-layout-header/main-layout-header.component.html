@@ -1,6 +1,9 @@
 <mat-toolbar color="primary" class="p-0 p-md-3 fixed-top border-bottom">
     <div class="d-flex mx-2 md-sm-0 noInternetText" *ngIf="!internetConnection" (click)="onToggleSidenav()">
-        <mat-icon>signal_wifi_off</mat-icon>
+        <mat-icon svgIcon="signal_wifi_off"></mat-icon>
+    </div>
+    <div style="display: none;">
+      <mat-icon svgIcon="signal_wifi_off"></mat-icon>
     </div>
     <div class="d-flex mx-2 md-sm-0" *ngIf="internetConnection" (click)="onToggleSidenav()">
         <img src="../../../assets/images/logo.png" class="img-logo" alt="app logo">
@@ -10,7 +13,7 @@
     </div>
     <div class="d-flex">
         <button mat-icon-button (click)="onToggleSidenav()" aria-label="Menu">
-            <mat-icon>menu</mat-icon>
+            <mat-icon svgIcon="menu"></mat-icon>
         </button>
     </div>
     <div class="d-flex flex-fill justify-content-end pr-3">
@@ -21,7 +24,7 @@
                 <ng-container *ngSwitchCase="1">
                     <button mat-icon-button [routerLink]="nav.path" [routerLinkActive]="['active-route-header']"
                         [routerLinkActiveOptions]="{exact: true}" attr.aria-label="{{nav.title}}">
-                        <mat-icon>{{nav.icon}}</mat-icon>
+                        <mat-icon svgIcon="{{nav.icon}}"></mat-icon>
                     </button>
                 </ng-container>
                 <!-- !nav.children -->
@@ -35,7 +38,7 @@
                 <ng-container *ngSwitchCase="3">
                     <button mat-button [matMenuTriggerFor]="menu"
                         [ngClass]="{'active-route-header': isChildRouteActive(nav)}" attr.aria-label="{{nav.title}}">
-                        {{nav.title}}<mat-icon class="dropdown-icon">arrow_drop_down</mat-icon>
+                        {{nav.title}}<mat-icon class="dropdown-icon" svgIcon="arrow_drop_down"></mat-icon>
                     </button>
                     <mat-menu #menu>
                         <button mat-menu-item *ngFor="let child of nav.children" [routerLink]="child.path" attr.aria-label="{{child.title}}">
@@ -47,15 +50,13 @@
         </ng-container>
         <button mat-icon-button routerLink="/notificaciones" routerLinkActive="active-route-header"
             [routerLinkActiveOptions]="{exact: true}" aria-label="Notifications">
-            <mat-icon [matBadge]="notificationBadges" [matBadgeHidden]="notificationBadges === 0" matBadgeColor="warn">
-                notifications
-            </mat-icon>
+            <mat-icon [matBadge]="notificationBadges" [matBadgeHidden]="notificationBadges === 0" matBadgeColor="warn" svgIcon="notifications"></mat-icon>
         </button>
         <button mat-icon-button aria-label="Cuenta">
-            <mat-icon>account_circle</mat-icon>
+            <mat-icon svgIcon="account_circle"></mat-icon>
         </button>
         <button mat-icon-button [matMenuTriggerFor]="optionsMenu" aria-label="Opciones">
-            <mat-icon>more_vert</mat-icon>
+            <mat-icon svgIcon="more_vert"></mat-icon>
         </button>
     </div>
 </mat-toolbar>

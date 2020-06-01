@@ -36,6 +36,6 @@ export class ErrorInterceptorService implements HttpInterceptor {
     const timeoutValueNumeric = Number(timeoutValue);
 
 
-    return next.handle(request).pipe(timeout(timeoutValueNumeric)).pipe(retry(5));
+    return next.handle(request).pipe(timeout(timeoutValueNumeric), retry(5));
   }
 }

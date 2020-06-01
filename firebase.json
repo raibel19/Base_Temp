@@ -6,9 +6,35 @@
       "**/.*",
       "**/node_modules/**"
     ],
-    "rewrites": [ {
-      "source": "**",
-      "destination": "/index.html"
-    } ]
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ],
+    "headers": [
+      {
+        "source": "**/*.@(eot|cur|otf|ttf|woff|woff2)",
+        "headers": [
+          {
+            "key": "Access-Control-Allow-Origin",
+            "value": "*"
+          },
+          {
+            "key": "Cache-Control",
+            "value": "max-age=31536000"
+          }
+        ]
+      },
+      {
+        "source": "**/*.@(js|css|png|jpg|jpeg|svg|webp|gif)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=31536000"
+          }
+        ]
+      }
+    ]
   }
 }

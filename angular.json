@@ -34,18 +34,8 @@
               }
             ],
             "styles": [
-              {
-                "input": "src/styles.scss",
-                "lazy": true,
-                "bundleName": "lazy-styles"
-              },
-              {
-                "input": "src/styles/fonts/fonts.scss",
-                "lazy": true,
-                "bundleName": "lazy-fonts"
-              }
+              "src/styles.scss"
             ],
-            "extractCss": true,
             "scripts": []
           },
           "configurations": {
@@ -60,10 +50,12 @@
               "outputHashing": "all",
               "sourceMap": false,
               "extractCss": true,
-              "namedChunks": false,
+              "namedChunks": true,
               "extractLicenses": true,
-              "vendorChunk": false,
+              "vendorChunk": true,
+              "commonChunk": true,
               "buildOptimizer": true,
+              "deleteOutputPath": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -114,18 +106,8 @@
               "src/manifest.webmanifest"
             ],
             "styles": [
-              {
-                "input": "src/styles.scss",
-                "lazy": true,
-                "bundleName": "lazy-styles"
-              },
-              {
-                "input": "src/styles/fonts/fonts.scss",
-                "lazy": true,
-                "bundleName": "lazy-fonts"
-              }
+              "src/styles.scss"
             ],
-            "extractCss": true,
             "scripts": []
           }
         },

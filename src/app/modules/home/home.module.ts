@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeIndexComponent } from './home-index/home-index.component';
-import { MainLayoutModule } from 'src/app/layouts/main-layout.module';
+// import { MainLayoutModule } from 'src/app/layouts/main-layout.module';
 
 
 @NgModule({
@@ -11,7 +11,7 @@ import { MainLayoutModule } from 'src/app/layouts/main-layout.module';
   imports: [
     CommonModule,
     HomeRoutingModule,
-    MainLayoutModule
+    // MainLayoutModule
   ]
 })
 export class HomeModule { }

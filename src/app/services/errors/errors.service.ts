@@ -1,15 +1,15 @@
-import { Injectable, Injector, NgZone, Type } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { HttpErrorResponse, HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of, BehaviorSubject } from 'rxjs';
+import { Observable, of, BehaviorSubject, TimeoutError, Subscription } from 'rxjs';
 import { Router, NavigationError } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 // ERROR STACK
-import * as StackTraceParser from 'error-stack-parser';
+import StackTraceParser from 'error-stack-parser';
 // MOMENT
-import * as _moment from 'moment';
-import { default as _rollupMoment } from 'moment';
-const moment = _rollupMoment || _moment;
+import moment from 'moment';
+// import { default as _rollupMoment } from 'moment';
+// const moment = _rollupMoment || _moment;
 // import 'moment/min/locales';
 // SHARES VARIABLES
 import { SHARED_VARIABLES } from 'src/app/shared/variables.shared';
@@ -25,14 +25,14 @@ class ErrorToSendModel {
   appId: string;
   user: string;
   time: number;
-  timestamp: _moment.Moment;
+  timestamp: moment.Moment;
   timestampFormat: string;
   id: string;
   identifier: string;
   url: string;
   status: any;
   message: any;
-  stack: StackTraceParser.StackFrame[];
+  stack: StackTraceParser.StackFrame[] | HttpErrorResponse | TimeoutError;
 
   constructor(model: ErrorToSendModel) {
     this.name = model.name;
@@ -64,32 +64,37 @@ export class ErrorsService {
     })
   };
   public lSObs: BehaviorSubject<any>;
+  public subscriptions: Subscription = new Subscription();
 
   constructor(
     private injector: Injector,
     private http: HttpClient,
     private router: Router,
-    private zone: NgZone
+    // private zone: NgZone
   ) {
     this.uri = '';
     this.postSendErrorToServiceUri = `${this.uri}/senderror`;
     this.lSObs = new BehaviorSubject<any>(this.errorLog);
+  }
 
+  public SubscribeNavigationError(): void {
     // Subscribe to the NavigatorError
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationError) {
-        // Redirect to the ErrorComponent
-        if (navigator.onLine) {
-          this.logToServe(event.error, true, false).subscribe((errorWithContext) => {
-            zone.run(() => router.navigate(['/error'], { queryParams: errorWithContext }));
-          });
+    this.subscriptions.add(
+      this.router.events.subscribe(event => {
+        if (event instanceof NavigationError) {
+          // Redirect to the ErrorComponent
+          if (navigator.onLine) {
+            this.logToServe(event.error, true, false).subscribe((errorWithContext) => {
+              // this.zone.run(() => this.router.navigate(['/error'], { queryParams: errorWithContext }));
+              this.router.navigate(['/error'], { queryParams: errorWithContext });
+            });
+          }
         }
-      }
-    });
+      })
+    );
   }
 
   public getError(controlName: string, formGroup: FormGroup, errorIntf?: Array<Error>, isSubmit: boolean = false): string {
-    // debugger;
     let error = null;
     const control = formGroup.get(controlName);
     for (const item in control.errors) {
@@ -114,7 +119,6 @@ export class ErrorsService {
   }
 
   private getValidatorErrorMessage(validatorName: string, validatorValue?: any, errorIntf?: Array<Error>): Array<any> {
-    // debugger;
     const errorList: Array<any> = [];
     if (errorIntf) {
       errorIntf.forEach(fe => {
@@ -175,7 +179,7 @@ export class ErrorsService {
     const url = location instanceof PathLocationStrategy ? location.path() : '';
     const status = error.status || null;
     const message = error.message || error.toString();
-    const stack = error instanceof HttpErrorResponse ? null : StackTraceParser.parse(error);
+    const stack = error instanceof HttpErrorResponse ? error : error instanceof TimeoutError ? null : StackTraceParser.parse(error);
 
     const errorToSend = new ErrorToSendModel(
       { name, appId, user, time, timestamp, timestampFormat, id, identifier, url, status, message, stack }

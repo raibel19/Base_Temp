@@ -2,13 +2,13 @@
     <div class="row align-items-center h-100">
         <div class="col-10">
             <div class="d-flex flex-row align-items-center">
-                <mat-icon class="mr-2" [style.color]="data.colorIcon">{{data.icon}}</mat-icon>
+                <mat-icon class="mr-2" [style.color]="data.colorIcon" svgIcon="{{data.icon}}"></mat-icon>
                 <div class="data">{{data.message}}</div>
             </div>
         </div>
         <div class="col-2">
             <button *ngIf="data.closeBtn" mat-icon-button (click)="snackBarRed.dismiss()" aria-label="Close">
-                <mat-icon>close</mat-icon>
+                <mat-icon svgIcon="close"></mat-icon>
             </button>
         </div>
         <div *ngIf="data.bugFlag" class="align-items-center align-content-center text-center w-100">

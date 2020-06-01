@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NotificationsService } from './services/pwa/sw/notifications/notifications.service';
 import { LoaderService } from './services/loader/loader.service';
 import { InternetConnectionService } from './services/internetConnection/internet-connection.service';
+import { MaterialIconService } from './services/materialIcon/material-icon.service';
+import { ErrorsService } from './services/errors/errors.service';
 
 @Component({
   selector: 'app-root',
@@ -14,35 +16,40 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(
     private notificationsService: NotificationsService,
     private loaderService: LoaderService,
-    private internetConnectionService: InternetConnectionService
+    private internetConnectionService: InternetConnectionService,
+    private materialIconService: MaterialIconService,
+    private errorService: ErrorsService
   ) {
-    this.preloadElements();
+    errorService.SubscribeNavigationError();
     notificationsService.init();
     loaderService.stupRouterLoader();
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.materialIconService.registerIcons();
+  }
 
   ngOnDestroy(): void {
     this.loaderService.subscriptions.unsubscribe();
     this.notificationsService.subscriptions.unsubscribe();
     this.internetConnectionService.onDestroy();
+    this.errorService.subscriptions.unsubscribe();
   }
 
   private preloadElements(): void {
-    const preloadLazyFontsElement = document.createElement('link');
-    preloadLazyFontsElement.rel = 'preload';
-    preloadLazyFontsElement.as = 'style';
-    preloadLazyFontsElement.href = 'lazy-fonts.css';
-    preloadLazyFontsElement.type = 'text/css';
-    preloadLazyFontsElement.media = '';
-    preloadLazyFontsElement.onload = () => {
-      preloadLazyFontsElement.rel = 'stylesheet';
-      if (preloadLazyFontsElement.media !== 'all') {
-        preloadLazyFontsElement.media = 'all';
-      }
-    };
-    document.head.appendChild(preloadLazyFontsElement);
+    // const preloadLazyFontsElement = document.createElement('link');
+    // preloadLazyFontsElement.rel = 'preload';
+    // preloadLazyFontsElement.as = 'style';
+    // preloadLazyFontsElement.href = 'lazy-fonts.css';
+    // preloadLazyFontsElement.type = 'text/css';
+    // preloadLazyFontsElement.media = '';
+    // preloadLazyFontsElement.onload = () => {
+    //   preloadLazyFontsElement.rel = 'stylesheet';
+    //   if (preloadLazyFontsElement.media !== 'all') {
+    //     preloadLazyFontsElement.media = 'all';
+    //   }
+    // };
+    // document.head.appendChild(preloadLazyFontsElement);
 
 
     const preloadLazyStylesElement = document.createElement('link');

@@ -32,6 +32,14 @@
     color: rgba($color: $sidenav-active-color, $alpha: 0.85) !important;
   }
 
+  .activeRoute {
+    ::ng-deep .mat-icon {
+      svg {
+        fill: rgba($color: $sidenav-active-color, $alpha: 0.85) !important;
+      }
+    }
+  }
+
   ::ng-deep mat-expansion-panel {
     &.mat-expanded {
       border-top-left-radius: 0 !important;

@@ -9,11 +9,10 @@
       "resources": {
         "files": [
           "/favicon.ico",
-          "/index.html",
+          "/home.html",
           "/manifest.webmanifest",
           "/*.css",
-          "/*.js",
-          "/*.scss"
+          "/*.js"
         ]
       }
     },
@@ -24,7 +23,17 @@
       "resources": {
         "files": [
           "/assets/**",
-          "/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani)"
+          "/static/**"
+        ]
+      }
+    },
+    {
+      "name": "fonts",
+      "installMode": "lazy",
+      "updateMode": "lazy",
+      "resources": {
+        "files": [
+          "/assets/**/*.@(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani)"
         ],
         "urls": [
           "https://fonts.gstatic.com/**",

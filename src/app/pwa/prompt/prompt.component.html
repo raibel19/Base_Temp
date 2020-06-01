@@ -1,7 +1,7 @@
 <mat-toolbar *ngIf="data.mobileType === 'android'" color="promary" class="android-prompt">
     <button mat-button (click)="installPwa()" aria-label="Add to Home Screen">Add to Home screen</button>
     <button mat-icon-button (click)="close()" aria-label="Close">
-        <mat-icon>close</mat-icon>
+        <mat-icon svgIcon="close"></mat-icon>
     </button>
 </mat-toolbar>
 
@@ -10,10 +10,10 @@
         Install this app on your device.
         <br />Tap the share icon and then <br /><strong>Add to homescreen</strong>.
         <div class="full-width">
-            <mat-icon>arrow_downward</mat-icon>
+            <mat-icon svgIcon="arrow_downward"></mat-icon>
         </div>
     </div>
     <button class="btn-close" mat-icon-button (click)="close()" aria-label="Close">
-        <mat-icon>close</mat-icon>
+        <mat-icon svgIcon="close"></mat-icon>
     </button>
 </div>

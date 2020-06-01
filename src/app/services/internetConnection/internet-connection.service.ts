@@ -1,4 +1,4 @@
-import { Injectable, NgZone } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { CanActivate } from '@angular/router';
 import { Observable, Subscription, BehaviorSubject, fromEvent } from 'rxjs';
 import { SnackBarNotificationService } from '../snackBarNotification/snack-bar-notification.service';
@@ -15,7 +15,7 @@ export class InternetConnectionService implements CanActivate {
   public statusInternetConection: BehaviorSubject<boolean>;
 
   constructor(
-    private zone: NgZone,
+    // private zone: NgZone,
     private snackBarService: SnackBarNotificationService
   ) {
     this.onlineEventObs = fromEvent(window, 'online');
@@ -26,20 +26,19 @@ export class InternetConnectionService implements CanActivate {
   }
 
   public canActivate(): boolean {
-    // debugger
     if (!navigator.onLine) {
-      this.zone.run(() =>
-        this.snackBarService.showForComponent(SnackbarIndexComponent, {
-          data: {
-            message: '¡Conexión Perdida! No estás conectado a internet',
-            icon: SnackBarIcons.wiffiOff,
-            colorIcon: 'white',
-            closeBtn: false
-          },
-          horizontalPosition: 'center',
-          verticalPosition: 'bottom'
-        })
-      );
+      // this.zone.run(() =>
+      this.snackBarService.showForComponent(SnackbarIndexComponent, {
+        data: {
+          message: '¡Conexión Perdida! No estás conectado a internet',
+          icon: SnackBarIcons.wiffiOff,
+          colorIcon: 'white',
+          closeBtn: false
+        },
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom'
+      });
+      // );
       this.statusInternetConection.next(false);
       return false;
     }
@@ -51,18 +50,18 @@ export class InternetConnectionService implements CanActivate {
     this.subscriptions.add(
       this.onlineEventObs.subscribe(e => {
         this.statusInternetConection.next(true);
-        this.zone.run(() =>
-          this.snackBarService.showForComponent(SnackbarIndexComponent, {
-            data: {
-              message: 'De vuelta en línea',
-              icon: SnackBarIcons.wiffiOn,
-              colorIcon: 'white',
-              closeBtn: false
-            },
-            horizontalPosition: 'center',
-            verticalPosition: 'bottom'
-          })
-        );
+        // this.zone.run(() =>
+        this.snackBarService.showForComponent(SnackbarIndexComponent, {
+          data: {
+            message: 'De vuelta en línea',
+            icon: SnackBarIcons.wiffiOn,
+            colorIcon: 'white',
+            closeBtn: false
+          },
+          horizontalPosition: 'center',
+          verticalPosition: 'bottom'
+        });
+        // );
       })
     );
   }
@@ -71,18 +70,18 @@ export class InternetConnectionService implements CanActivate {
     this.subscriptions.add(
       this.offlineEventObs.subscribe(e => {
         this.statusInternetConection.next(false);
-        this.zone.run(() =>
-          this.snackBarService.showForComponent(SnackbarIndexComponent, {
-            data: {
-              message: '¡Conexión Perdida! No estás conectado a internet',
-              icon: SnackBarIcons.wiffiOff,
-              colorIcon: 'white',
-              closeBtn: false
-            },
-            horizontalPosition: 'center',
-            verticalPosition: 'bottom'
-          })
-        );
+        // this.zone.run(() =>
+        this.snackBarService.showForComponent(SnackbarIndexComponent, {
+          data: {
+            message: '¡Conexión Perdida! No estás conectado a internet',
+            icon: SnackBarIcons.wiffiOff,
+            colorIcon: 'white',
+            closeBtn: false
+          },
+          horizontalPosition: 'center',
+          verticalPosition: 'bottom'
+        });
+        // );
       })
     );
   }

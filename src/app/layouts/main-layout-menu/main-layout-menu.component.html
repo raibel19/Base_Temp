@@ -2,8 +2,8 @@
     <ng-container *ngIf="nav.children; then navWithChildren; else singleNav;"></ng-container>
     <ng-template #singleNav>
         <a [ngClass]="{'link-width': showMenu}" mat-list-item [routerLink]="nav.path" class="text-center"
-            routerLinkActive="activeRoute" [routerLinkActiveOptions]="{exact: true}" *ngIf="nav.showInMenu">
-            <mat-icon>{{nav.icon}}</mat-icon><span *ngIf="showMenu" class="ml-2 nav-text">{{nav.title}}</span>
+            routerLinkActive="activeRoute" [routerLinkActiveOptions]="{exact: true}" *ngIf="nav.showInMenu" attr.aria-label="{{nav.title}}">
+            <mat-icon svgIcon="{{nav.icon}}"></mat-icon><span *ngIf="showMenu" class="ml-2 nav-text">{{nav.title}}</span>
         </a>
     </ng-template>
     <ng-template #navWithChildren>
@@ -11,7 +11,7 @@
             <mat-expansion-panel class="mat-elevation-z0 bg-drawer">
                 <mat-expansion-panel-header class="px-3">
                     <mat-panel-title>
-                        <mat-icon [ngClass]="{'activeRoute': isChildRouteActive(nav)}">{{nav.icon}}</mat-icon>
+                        <mat-icon [ngClass]="{'activeRoute': isChildRouteActive(nav)}" svgIcon="{{nav.icon}}" attr.aria-label="{{nav.title}}"></mat-icon>
                         <span *ngIf="showMenu" class="ml-2 nav-text">{{nav.title}}</span>
                     </mat-panel-title>
                 </mat-expansion-panel-header>
@@ -19,8 +19,8 @@
                     <ng-container *ngFor="let child of nav.children">
                         <a [ngClass]="{'link-width': showMenu}" *ngIf="child.showInMenu" mat-list-item
                             [routerLink]="nav.path" routerLinkActive="activeRoute"
-                            [routerLinkActiveOptions]="{exact: true}">
-                            <mat-icon>{{child.icon}}</mat-icon>
+                            [routerLinkActiveOptions]="{exact: true}" attr.aria-label="{{child.title}}">
+                            <mat-icon svgIcon="{{child.icon}}"></mat-icon>
                             <span *ngIf="showMenu" class="ml-2 nav-text">{{child.title}}</span>
                         </a>
                     </ng-container>
@@ -31,11 +31,11 @@
 </ng-container>
 
 <a [ngClass]="{'link-width': showMenu}" mat-list-item [matMenuTriggerFor]="themeMenu">
-    <mat-icon>palette</mat-icon>
+    <mat-icon svgIcon="palette"></mat-icon>
     <span *ngIf="showMenu" class="ml-2 nav-text">Temas</span>
 </a>
 <a [ngClass]="{'link-width': showMenu}" mat-list-item [matMenuTriggerFor]="languageMenu">
-    <mat-icon>language</mat-icon>
+    <mat-icon svgIcon="language"></mat-icon>
     <span *ngIf="showMenu" class="ml-2 nav-text">Idioma</span>
 </a>
 

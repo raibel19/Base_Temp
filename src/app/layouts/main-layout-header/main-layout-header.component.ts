@@ -18,7 +18,7 @@ export class MainLayoutHeaderComponent implements OnInit, OnDestroy {
   public navList: Array<NavModel> = MENU_ROUTES.filter(n => n.showInHeader);
   public title: string = SHARED_VARIABLES.APP_TITLE;
   public xsBreakpoint: string = Breakpoints.XSmall;
-  public notificationBadges = 0;
+  public notificationBadges = 20;
   public internetConnection = true;
 
   constructor(
